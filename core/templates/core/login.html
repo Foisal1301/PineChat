@@ -1,0 +1,126 @@
+{% extends 'core/base.html' %}
+{% block title %}Log in{% endblock %}
+<!--allauth-->
+{% load socialaccount %}
+{% providers_media_js %}
+<!--allauth-->
+{% block style %}
+<style>
+  .social{
+    background-color: rgba(5, 253, 228, 0.479);
+    border: none;
+  }
+  .social:hover{
+    background-color: #285e61;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height:50%;
+}
+
+#submit{
+  background-color: rgba(5, 253, 228, 0.479);
+  border: none;
+}
+#submit:hover{
+  background-color: #285e61;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
+{% endblock %}
+{% block content %}
+<!--login-->
+    <main class="form-signin w-100 m-auto shadow-lg p-4 mb-5 rounded">
+      {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+                  {{ error|escape }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    {% if messages %}{% for message in messages %}
+      <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+        {{ message|safe }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}{% endif %}
+      <form method="post" action=".">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal text-center text-light">Log In</h1><br>
+    
+        <div class="form-floating">
+          <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Email Address">
+          <label for="floatingInput">Email Address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" name="password" class="form-control" id="id_password" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <br>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" onclick="showPassword();" value="show-password text-light"> Show Password
+          </label>
+        </div>
+        <button id="submit" class="w-100 btn btn-lg" type="submit">Log in</button><br><br>
+        <a href="{% provider_login_url "google" %}" class="social w-100 btn btn-lg" type="submit">Log in with Google</a><br><br>
+        <a href="{% provider_login_url "facebook" %}" class="social w-100 btn btn-lg" type="submit">Log in with Facebook</a><br><br>
+        <a href="{% provider_login_url "github" %}" class="social w-100 btn btn-lg" type="submit">Log in with Github</a>
+        <br><br><div style="text-align: center;">
+          <a style=" text-decoration: none ;" href="/reset_password/">Forgotten Password?</a><hr>
+          <a style="text-decoration: none ;" href="/signup/">Create New Account</a>
+        </div>
+        <p class="mt-5 mb-3 text-light">© 2022 Pineapple Inc.</p>
+      </form>
+    </main>    
+    <!--login-->
+{% endblock %}
+{% block scripts %}
+  <script>
+    function showPassword(){
+        var p1 = document.getElementById('id_password');
+        if (p1.type === 'password'){
+            p1.type = 'text';
+        }else{
+            p1.type = 'password';
+        }
+    }
+  </script>
+{% endblock %}

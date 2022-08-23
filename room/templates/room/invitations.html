@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% block title %}Invitations{% endblock %}
+{% block content %}
+  {% if messages %}{% for message in messages %}
+  <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+    <div style="background-color: {% if message.tags == "error" %}#feb2b2{% else %}#5cb85c{% endif %};" class="alert alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  {% endfor %}{% endif %}
+  {% if invitations %}
+    <br><h1 class="text-center text-light display-1">Invitations</h1><br>
+    <div class="shadow-lg p-4 mb-5 rounded" style="margin-left:3rem;margin-right:3rem;">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Sender's Name</th>
+              <th scope="col">Room's Name</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>{% for invite in invitations %}
+            <tr>
+              <td>{{ invite.sender }}</td>
+              <td>{{ invite.room }}</td>
+              <td>
+                <a href="{% url "accept-invite" invite.id %}" class="text-light btn btn-success">Accept</a> 
+                <a href="{% url "decline-invite" invite.id %}" class="text-light btn btn-danger">Decline</a>
+              </td>
+            </tr>{% endfor %}
+          </tbody>
+        </table>
+    </div>
+  {% else %}
+    <br><br><br>
+    <center>
+      <strong><h1>You have no invitations</h1></strong><br>
+      <a href="/rooms/join_room/">Join</a> or <a href="/rooms/create_room/">Create</a> room
+    </center>
+  {% endif %}
+
+{% endblock %}

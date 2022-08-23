@@ -1,0 +1,82 @@
+<!--navbar-->
+<nav class="navbar navbar-expand-lg sticky-top" style="background-color: rgb(17 94 89);">
+  <div class="container-fluid">
+    <h1><a class="navbar-brand text-light" href="/friends/">PineChat</a></h1>
+    <button style="background-color: rgb(13 148 136);" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div style="background-color: rgb(17 94 89);" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">PineChat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        {% if user.is_authenticated %}
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class=" nav-link text-light active" aria-current="page" href="/admin/">Admin Panel</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a class="nav-link text-light" href="/friends/friend_requests/">Friend Request</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-light" href="/rooms/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Rooms
+                  </a>
+                  <ul class="dropdown-menu" style="background-color: rgb(17 94 89);">
+                    <li>
+                      <a class="dropdown-item text-light" href="/rooms/">Show Rooms</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item text-light" href="{% url "create-room" %}">Create Room</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item text-light" href="/rooms/join_room/">Join Room</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item text-light" href="/rooms/invitations/">Invitations</a>
+                    </li>
+                  </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search" method=POST action="{% url 'search' %}">
+              {% csrf_token %}
+              <input name="searched" class="form-control me-2" name="" type="search" placeholder="Search" aria-label="Search">
+              <select name="sort-by" class="form-select form-select-sm me-2" aria-label="Default select example">
+                <option selected>Sort By</option>
+                <option>Username</option>
+                <option>First Name</option>
+                <option>Last Name</option>
+                <option>Email</option>
+              </select>
+              <button style="margin-right: 5px;" class="btn btn-outline-success text-light" type="submit">Search</button>
+            </form>
+            <div class="dropdown">
+                {% if user.profile.profile_pic %}
+                    <img style="margin-right: 5px;" height="40" width="40" src="{{ user.profile.profile_pic.url }}" data-bs-toggle="dropdown" aria-expanded="false" class="img-fluid rounded-circle" alt="{{ user.user.first_name}} {{ user.user.last_name }}">
+                {% else %}
+                    <button type="button" class="btn dropdown-toggle" style="background-color: rgb(0, 137, 123);" data-bs-toggle="dropdown" aria-expanded="false">{{ user }}</button>
+                {% endif %}
+                <ul class="dropdown-menu dropdown-menu-lg-end dropdown-menu-end" style="background-color: rgb(17 94 89);">
+                  {% if user.profile %}
+                    <li class="dropdown-item text-light"><a style="text-decoration:none;" class="text-light" href="/profile/{{ user.id }}/">Show Profile</a></li>
+                    <li class="dropdown-item text-light"><a style="text-decoration:none;" class="text-light" href="/edit_profile/">Edit Profile</a></li>
+                  {% endif %}
+                  <li class="dropdown-item text-light"><a style="text-decoration:none;" class="text-light" href="/privacy_settings/">Privacy Settings</a></li>
+                  <li class="dropdown-item text-light"><a style="text-decoration:none;" class="text-light" href="/change_password/">Change Password</a></li>
+                  <li class="dropdown-item"><a style="text-decoration:none;" class="text-light" data-bs-toggle="modal" data-bs-target="#delete-user-modal">Delete Account</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li class="dropdown-item"><a style="text-decoration:none;" class="text-light" href="/logout/">Log out</a></li>
+                </ul>
+            </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!--navbar-->
+{% include "core/delete_user_modal.html" %}

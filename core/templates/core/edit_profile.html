@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+{% block title %}Edit Profile{% endblock %}
+{% block style %}
+<style>
+  .dropdown-item:hover{
+      background-color: rgb(0, 137, 123);
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height:50%;
+}
+
+#submit{
+  background-color: rgba(5, 253, 228, 0.479);
+  border: none;
+}
+#submit:hover{
+  background-color: #285e61;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+label{
+    color: #f1f1f1;
+}
+</style>
+{% endblock %}
+{% block content %}
+
+<br><br><br>
+    <main class="form-signin w-100 m-auto shadow-lg p-4 mb-5 rounded">
+      {% if form.errors %}
+        {% for field in form %}
+          {% for error in field.errors %}
+            <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+              {{ error|escape }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
+      <form method="post" action="." enctype="multipart/form-data">
+        <h1 class="h3 mb-3 fw-normal text-center text-light">Create Profile</h1><br>
+        {% csrf_token %}
+        {% if me.profile_pic %}
+        <img src="{{ me.profile_pic.url }}" height="280" width="280"><br><br>
+        <input class="form-check-input" type="checkbox" name="profile_pic-clear" id="profile_pic-clear_id" style="margin-right: 5px">
+        <label class="form-check-label" for="profile_pic-clear_id">Clear current profile pic</label><br><br>
+        {% endif %}
+
+        <div class="mb-3">
+          <label for="formFileSm" class="form-label">Change Profile Pic</label>
+          <input class="form-control" type="file" type="file" name="profile_pic" accept="image/*" id="id_profile_pic">
+        </div>
+
+        <div class="form-floating">
+            <textarea name="bio" class="form-control" cols="40" rows="10" placeholder="Bio" id="id_bio" style="height: 100px">{{ me.bio }}</textarea><label>Bio</label>
+        </div><br>
+    <br>
+        <button class="w-100 btn btn-lg" type="submit" id="submit">Edit</button>
+      </form>
+    </main>
+{% endblock %}

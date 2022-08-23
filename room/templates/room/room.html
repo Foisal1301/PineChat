@@ -1,0 +1,150 @@
+{% extends 'core/base.html' %}
+{% block title %}{{ room.name }}{% endblock %}
+{% block style %}
+  <style>
+    .util-btn{
+      background-color: rgb(38,166,154);
+      border: none;
+      margin: 1rem;
+    }
+    .util-btn:hover{
+      background-color: #285e61;
+      border: none;
+    }
+    .submit-btn{
+      background-color: rgb(0, 137, 123);
+      border: none;
+    }
+    .submit-btn:hover{
+      background-color: #285e61;
+    }
+    a{
+      text-decoration: none;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  <!--Room-->
+  {% if allowed %}
+  <br><h1 class="text-center text-light display-1">{{ room.name }}</h1><br>
+  <div class="flex">
+    <button style="border:1px solid rgb(126, 240, 202);" class="btn btn-lg util-btn" data-bs-toggle="modal" data-bs-target="#room-settings-modal">Room Settings</button>
+    <button style="border:1px solid rgb(126, 240, 202);" class="btn btn-lg util-btn" data-bs-toggle="modal" data-bs-target="#members-modal">Members</button>
+    <a style="border:1px solid rgb(126, 240, 202);" class="btn btn-lg util-btn" href="{% url "invite" room.uuid %}">Invite</a>
+  </div>
+
+  <div class="card" id="chat-messages-section" style="width: 95% ;height: 25rem;margin-left: 1.5rem;margin-right: 1.5rem;overflow-y: auto;">
+    <div class="card-body" id="chat-messages">
+      {% for message in messages %}
+        <div class="card message-card" style="background-color: rgb(209 213 219); margin-bottom: 0.5rem;">
+          <div class="card-body">
+            <strong><h5 class="card-title">{{ message.user }}</h5></strong>
+            <a style="margin-top:1rem;margin-right:1rem;--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; text-decoration:none;" class="position-absolute top-1 end-0 btn util-btn" data-bs-toggle="modal" data-bs-target="#forward-modal">Forward</a>
+            <a style="margin-top:1rem;margin-right:1rem;--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; text-decoration:none;" class="position-absolute top-0 end-0 btn btn-danger" href="{% url "delete-message" message.id %}">Delete</a>
+            <p class="card-text">{{ message.content }}</p>
+            <small class="mb-2 text-muted">{{ message.date_added }}</small>
+          </div>
+        </div>
+        {% include "room/forward_modal.html" %}
+      {% endfor %}
+      
+    </div>
+  </div>
+  <div class="card" style="width: 95%;margin-left: 1.5rem;">
+    <div class="card-body">
+      <form action="." method="post" class="row" style="margin-right: 0.1rem;">
+        <div class="form-floating col-sm-11" style="margin-top: 0.5rem;">
+          <textarea name="content" class="form-control" placeholder="Your message..." id="chat-message-input"></textarea>
+          <label for="chat-message-input" style="margin-left: 1rem;">Your message...</label>
+        </div>
+        <button class="submit-btn btn col-sm-1" id="chat-message-submit" style="margin-top: 0.5rem;">Submit</button>
+    </form>
+    </div>
+    </div>
+
+  <!--Room-->
+
+  <!--Room Settings Modal -->
+  {% include "room/room_settings_modal.html" %}
+  <!--Room Settings Modal -->
+
+  <!--Members Modal-->
+  {% include "room/members_modal.html" %}
+  <!--Members Modal-->
+  {% else %}
+    <center><br><br><br>
+      <strong><h1>You are not allowed</h1></strong><br>
+    </center>
+  {% endif %}
+{% endblock %}
+{% block scripts %}
+    {{ room.id|json_script:"json-roomname" }}
+    {{ user.username|json_script:"json-username" }}
+    <script>
+        const roomName = JSON.parse(document.getElementById("json-roomname").textContent);
+        const userName = JSON.parse(document.getElementById("json-username").textContent);
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onclose = function(e){
+            console.log("onclose");
+        };
+
+        chatSocket.onmessage = function(e){
+            console.log("onmessage");
+
+            const data = JSON.parse(e.data);
+
+            if (data.message){
+                let today= new Date().toLocaleDateString('en-US', { timeZone: 'UTC' });
+                let curr_time = new Date().toLocaleTimeString('en-US', { timeZone: 'UTC' });
+                let time = `<small class="mb-2 text-muted">${today},${curr_time}</small>`;
+                let mes = `<div class="card" style="background-color: rgb(209 213 219); margin-bottom: 0.5rem;"><div class="card-body"><strong><h5 class="card-title">${data.username}</h5></strong><p class="card-text">${data.message}</p><small class="mb-2 text-muted">${time}</small></div></div>`;
+                document.querySelector("#chat-messages").innerHTML += mes;
+
+                scrollToBottom();
+
+            }else{
+                alert("The message was empty!");
+            }
+        };
+
+
+
+
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector("#chat-message-submit").onclick = function(e){
+            e.preventDefault();
+            const messageInputDom = document.querySelector("#chat-message-input");
+            const message = messageInputDom.value;
+
+            chatSocket.send(JSON.stringify({
+                "message": message,
+                "username": userName,
+                "room":roomName
+            }));
+
+            messageInputDom.value = "";
+            return false;
+        };
+
+        function scrollToBottom(){
+            const objDiv = document.querySelector("#chat-messages-section");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        };
+        scrollToBottom();
+    </script>
+
+{% endblock %}

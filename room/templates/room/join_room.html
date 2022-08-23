@@ -1,0 +1,91 @@
+{% extends 'core/base.html' %}
+{% block title %}Join Room{% endblock %}
+{% block style %}
+  <style>
+    .dropdown-item:hover{
+        background-color: rgb(0, 137, 123);
+    }
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 30%;
+      height:50%;
+  }
+  
+  #submit{
+    background-color: rgba(5, 253, 228, 0.479);
+    border: none;
+  }
+  #submit:hover{
+    background-color: #285e61;
+  }
+  .form-signin {
+    max-width: 330px;
+    padding: 15px;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  </style>
+{% endblock %}
+{% block content %}
+  <br><br><br>
+  <!--join_room-->
+  <main class="form-signin w-100 m-auto shadow-lg p-4 mb-5 rounded">
+    {% if messages %}{% for message in messages %}
+      <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+        <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    {% endfor %}{% endif %}
+    
+    <form method="post" action='.'>
+      <h1 class="h3 mb-3 fw-normal text-center text-light">Join Room</h1><br>
+      {% csrf_token %}
+  
+      <div class="form-floating">
+        <input type="text" name="room_id" class="form-control" id="floatingInput" placeholder="Room ID">
+        <label for="floatingInput">Room ID</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" name="password" class="form-control" id="id_password" placeholder="Password">
+        <label for="floatingPassword">Room Password</label>
+      </div><br>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" onclick="showPassword();" value="show-password text-light"> Show Password
+        </label>
+      </div>
+      <button id="submit" class="w-100 btn btn-lg" style="background-color: #285e61;" type="submit">Join</button>
+    </form>
+  </main>
+  <!--join_room-->
+{% endblock %}
+{% block scripts %}
+  <script>
+    function showPassword(){
+        var p1 = document.getElementById('id_password');
+        if (p1.type === 'password'){
+            p1.type = 'text';
+        }else{
+            p1.type = 'password';
+        }
+    }
+  </script>
+{% endblock %}
