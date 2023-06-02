@@ -1,0 +1,39 @@
+<div class="modal fade" id="room-settings-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="background-color: rgb(0, 137, 123);">
+      <div class="modal-header" style="background-color:rgb(17 94 89);">
+        <h5 class="modal-title" id="exampleModalLabel">Room Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td>Room Name</td>
+              <td>{{ room.name }}</td>
+              <td><a href="{% url "edit-room" room.uuid %}" class="text-danger">Edit</a></td>
+            </tr>
+            <tr>
+              <td>Room ID</td> 
+              <td>{{ room.uuid }}</td>
+              <td><a class="text-danger">Not Editable</a></td>
+            </tr>
+            <tr>
+              <td>Room Password</td>
+              <td>{{ room.password }}</td>
+              <td><a href="{% url "edit-room" room.uuid %}" class="text-danger">Edit</a></td>
+            </tr>
+          </tbody>
+        </table>
+        {% if user.id == room.owner.id %}
+        <a href="{% url "delete-room" room.uuid %}" class="text-danger">Delete Room</a><br><br>
+        {% else %}
+          {% if user.is_superuser %}
+            <a href="{% url "delete-room" room.uuid %}" class="text-danger">Delete Room</a><br><br>
+          {% endif %}
+          <a href="{% url "leave-room" room.uuid user.id %}" class="text-danger">Leave Room</a><br>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

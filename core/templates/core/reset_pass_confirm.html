@@ -1,0 +1,114 @@
+{% extends 'core/base.html' %}
+{% block title %}New Password{% endblock %}
+{% block style %}
+<style>
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height:50%;
+}
+
+#submit{
+  background-color: rgba(5, 253, 228, 0.479);
+  border: none;
+}
+#submit:hover{
+  background-color: #285e61;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
+{% endblock %}
+{% block content %}
+<!--Signup-->
+    <main class="form-signin w-100 m-auto shadow-lg p-4 mb-5 rounded">
+      {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+                  {{ error|escape }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+    {% if messages %}{% for message in messages %}
+      <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}{% endif %}
+      <form method="post" action=".">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal text-center text-light">Set New Password</h1><br>
+    
+        <div class="form-floating">
+          <input name="new_password1" type="password" class="form-control" id="id_password1" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+
+        <div class="form-floating">
+            <input type="password" name="new_password2" class="form-control" id="id_password2" placeholder="Password">
+            <label for="floatingPassword">Repeat Password</label>
+        </div>
+        <br>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" onclick="showPassword();" value="show-password" class="text-light"> Show Password
+          </label>
+        </div>
+        <button id="submit" class="w-100 btn btn-lg" type="submit">Change</button>
+        <p class="mt-5 mb-3 text-light">© 2022 Pineapple Inc.</p>
+      </form>
+    </main>
+
+    
+    <!--Signup-->
+{% endblock %}
+{% block scripts %}
+  <script>
+    function showPassword(){
+        var p1 = document.getElementById('id_password1');
+        var p2 = document.getElementById('id_password2');
+        if (p1.type === 'password' && p2.type === 'password'){
+            p1.type = 'text';
+            p2.type = 'text';
+        }else{
+            p1.type = 'password';
+            p2.type = 'password';
+        }
+    }
+  </script>
+{% endblock %}

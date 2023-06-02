@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% block title %}Friend Requests{% endblock %}
+{% load static %}
+{% block content %}
+  {% if reqs %}
+    <br><h1 class="text-center text-light display-1">You have {{ length }} friend requests</h1><br>
+    <div class="shadow-lg p-4 mb-5 rounded" style="margin-left:3rem;margin-right:3rem;">
+        <table class="table table-striped">
+          <tbody>{% for req in reqs %}
+            <tr>
+              <td style="display: flex">
+                {% if req.sender.profile.profile_pic %}
+                    <img style="margin-right: 5px;" height="40" width="40" src="{{ req.sender.profile.profile_pic.url }}" data-bs-toggle="dropdown" aria-expanded="false" class="img-fluid rounded-circle" alt="{{ req.sender.get_full_name }}">
+                {% else %}
+                    <img style="margin-right: 5px;" height="40" width="40" src="{% static '/images/profile_pic.png' %}" data-bs-toggle="dropdown" aria-expanded="false" class="img-fluid rounded-circle" alt="Profile Pic">
+                {% endif %}
+                <h4><a href="{% url 'profile' req.sender.id %}" style="text-decoration: none;color: #f1f1f1">{% if req.sender.get_full_name %}{{ req.sender.get_full_name }}{% else %}{{ req.sender }}{% endif %}</a></h4>
+              </td>
+              <td align="right">
+                <a href="{% url 'accept-friendreq' req.sender.id %}" class="text-light btn btn-success">Accept</a>
+                <a href="{% url 'decline-friendreq' req.sender.id %}" class="text-light btn btn-danger">Decline</a>
+              </td>
+            </tr>{% endfor %}
+          </tbody>
+        </table>
+    </div>
+  {% else %}
+    <br><br><br>
+    <center>
+      <strong><h1>You have no friend requests</h1></strong>
+    </center>
+  {% endif %}
+
+{% endblock %}

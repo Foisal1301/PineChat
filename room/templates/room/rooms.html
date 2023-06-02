@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% block title %}Rooms{% endblock %}
+{% block style %}
+<style>
+  .btn{
+    background-color: rgb(0, 137, 123);
+    border: none;
+  }
+  .btn:hover{
+    background-color: #285e61;
+  }
+</style>
+{% endblock %}
+{% block content %}
+  {% if messages %}{% for message in messages %}
+  <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+    <div style="background-color: {% if message.tags == "error" %}#feb2b2{% else %}#5cb85c{% endif %};" class="alert alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  {% endfor %}{% endif %}
+  {% if rooms %}
+    <!--Rooms-->
+    <br><h1 class="text-center text-light display-1">Rooms</h1><br>
+    <div class="row" style="margin: 1rem;padding:0.5rem;">  
+      {% for room in rooms %} 
+        <div class="col-lg-3 col-sm-6 col-md-3 col-xs-12" style="margin-bottom:1rem;">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="card-body text-center">
+              <h1 class="card-title">{{ room.name }}</h1>
+              <div class="card-text">
+                <b>Owner :</b>  {{ room.owner }}<br><br>
+              </div>
+              <a href="{% url "room" room.uuid %}" class="w-100 btn">Join</a>
+            </div>
+          </div>
+        </div>  
+      {% endfor %} 
+    </div>
+    <!--Rooms-->
+  {% else %}
+    <br><br><br>
+    <center>
+      <strong><h1>You have not joined any room</h1></strong><br>
+      <a href="/rooms/join_room/">Join</a> or <a href="/rooms/create_room/">Create</a> room
+    </center>
+  {% endif %}
+
+{% endblock %}

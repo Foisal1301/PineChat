@@ -1,0 +1,91 @@
+{% extends 'core/base.html' %}
+{% block title %}Edit Room{% endblock %}
+{% block style %}
+<style>
+  .dropdown-item:hover{
+      background-color: rgb(0, 137, 123);
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height:50%;
+}
+
+#submit{
+  background-color: rgba(5, 253, 228, 0.479);
+  border: none;
+}
+#submit:hover{
+  background-color: #285e61;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
+{% endblock %}
+{% block content %}
+
+<br><br><br>
+    <main class="form-signin w-100 m-auto shadow-lg p-4 mb-5 rounded">
+      {% if messages %}{% for message in messages %}
+        <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+          <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+      {% endfor %}{% endif %}
+      {% if form.errors %}
+        {% for field in form %}
+          {% for error in field.errors %}
+            <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+              {{ error|escape }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
+      <form method="post" action="">
+        <h1 class="h3 mb-3 fw-normal text-center text-light">Privacy Settings</h1><br>
+        {% csrf_token %}
+
+        <div class="form-floating">
+          <input value="{{ user }}" type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input value="{{ user.first_name }}" type="text" class="form-control" id="floatingInput" placeholder="First Name" name="first_name">
+            <label for="floatingInput">First Name</label>
+        </div>
+        <div class="form-floating">
+            <input value="{{ user.last_name }}" type="text" class="form-control" id="floatingInput" placeholder="Last Name" name="last_name">
+            <label for="floatingInput">Last Name</label>
+        </div>
+        <div class="form-floating">
+            <input value="{{ user.email }}" type="email" class="form-control" id="floatingInput" placeholder="Email Address" name="email">
+            <label for="floatingInput">Email Address</label>
+        </div>
+    <br>
+        <input class="w-100 btn btn-lg" type="submit" id="submit" value="Edit">
+      </form>
+    </main>
+{% endblock %}

@@ -1,0 +1,277 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"messa",
+				"message"
+			],
+			[
+				"ac",
+				"action"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"Mess",
+				"MessageWithFriend"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "<label id=\"id_upload_button\" class=\"btn btn-file btn-warning\" for=\"id_upload_filename\" type=\"submit\">\n    <input type=\"file\" name=\"file\" id=\"id_upload_filename\" style=\"display: none;\" onchange=\"$('#id_upload_form').submit()\">\n    <i class=\"glyphicon glyphicon-upload\"></i>\n    Upload a file\n</label>",
+			"settings":
+			{
+				"buffer_size": 299,
+				"line_ending": "Unix",
+				"name": "<label id=\"id_upload_button\" class=\"btn btn-file b"
+			},
+			"undo_stack":
+			[
+				[
+					1,
+					1,
+					"paste",
+					null,
+					"AQAAAAAAAAAAAAAAuwEAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					6,
+					8,
+					"unindent",
+					null,
+					"IAAAAGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIAIBAAAAAAAAAgEAAAAAAAAEAAAAICAgIFEBAAAAAAAAUQEAAAAAAAAEAAAAICAgIIMBAAAAAAAAgwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIP4AAAAAAAAA/gAAAAAAAAAEAAAAICAgIEkBAAAAAAAASQEAAAAAAAAEAAAAICAgIHcBAAAAAAAAdwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIPoAAAAAAAAA+gAAAAAAAAAEAAAAICAgIEEBAAAAAAAAQQEAAAAAAAAEAAAAICAgIGsBAAAAAAAAawEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIPYAAAAAAAAA9gAAAAAAAAAEAAAAICAgIDkBAAAAAAAAOQEAAAAAAAAEAAAAICAgIF8BAAAAAAAAXwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIPIAAAAAAAAA8gAAAAAAAAAEAAAAICAgIDEBAAAAAAAAMQEAAAAAAAAEAAAAICAgIFMBAAAAAAAAUwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIO4AAAAAAAAA7gAAAAAAAAAEAAAAICAgICkBAAAAAAAAKQEAAAAAAAAEAAAAICAgIEcBAAAAAAAARwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIOoAAAAAAAAA6gAAAAAAAAAEAAAAICAgICEBAAAAAAAAIQEAAAAAAAAEAAAAICAgIDsBAAAAAAAAOwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIOYAAAAAAAAA5gAAAAAAAAAEAAAAICAgIBkBAAAAAAAAGQEAAAAAAAAEAAAAICAgIC8BAAAAAAAALwEAAAAAAAAEAAAAICAgIA",
+					"AQAAAAAAAAABAAAAuwEAAAAAAABmAAAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					7,
+					1,
+					"unindent",
+					null,
+					"BAAAAGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIOIAAAAAAAAA4gAAAAAAAAAEAAAAICAgIBEBAAAAAAAAEQEAAAAAAAAEAAAAICAgICMBAAAAAAAAIwEAAAAAAAAEAAAAICAgIA",
+					"AQAAAAAAAAABAAAAOwEAAAAAAABmAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/foisal/Documents/PineChat",
+		"/Users/foisal/Documents/PineChat/friend",
+		"/Users/foisal/Documents/PineChat/friend/templates",
+		"/Users/foisal/Documents/PineChat/friend/templates/friend"
+	],
+	"file_history":
+	[
+		"/Users/foisal/Documents/PineChat/core/templates/core/404.html",
+		"/Users/foisal/Documents/PineChat/core/templates/core/500.html",
+		"/Users/foisal/Documents/PineChat/friend/views.py",
+		"/Users/foisal/Documents/PineChat/friend/templates/friend/friend_chat.html",
+		"/Users/foisal/Documents/PineChat/django_project/settings.py",
+		"/Users/foisal/Documents/PineChat/core/views.py",
+		"/Users/foisal/Documents/PineChat/django_project/urls.py",
+		"/Users/foisal/Documents/PineChat/friend/models.py",
+		"/Users/foisal/Documents/PineChat/friend/urls.py",
+		"/Users/foisal/Documents/PineChat/friend/templates/friend/view_photo.html",
+		"/Users/foisal/Documents/PineChat/todo.txt",
+		"/Users/foisal/Documents/Prac/index.html",
+		"/Users/foisal/Documents/PineChat/friend/templates/friend/uploadFile.html",
+		"/Users/foisal/Documents/PineApple-Browser/PineApple Browser.py",
+		"/Users/foisal/Documents/PineApple-Browser/browser.py",
+		"/Users/foisal/Documents/trydjango/trydjango/urls.py"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"send_message",
+			"Friend",
+			"console",
+			"chat-messages-section"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 299,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								299,
+								299
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<label id=\"id_upload_button\" class=\"btn btn-file b",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Pinechat.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 164.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

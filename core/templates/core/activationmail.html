@@ -1,0 +1,15 @@
+{% autoescape off %}
+
+
+Hi {{user.username}}
+
+Please use the link below to verify your account.
+
+
+http://{{domain}}{% url 'verify-email' otp %}
+
+
+
+Thanks you
+PineApple Inc.
+{% endautoescape %}

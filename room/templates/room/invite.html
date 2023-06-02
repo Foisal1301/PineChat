@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+{% block title %}Invite{% endblock %}
+{% block style %}
+  <style>
+    .dropdown-item:hover{
+        background-color: rgb(0, 137, 123);
+    }
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 30%;
+      height:50%;
+  }
+  
+  #submit{
+    background-color: rgba(5, 253, 228, 0.479);
+    border: none;
+  }
+  #submit:hover{
+    background-color: #285e61;
+  }
+  .form-signin {
+    max-width: 330px;
+    padding: 15px;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  </style>
+{% endblock %}
+{% block content %}
+  <br><br><br>
+  <!--invite-->
+  <main class="form-signin w-100 m-auto shadow-lg p-4 mb-5 rounded">
+    {% if messages %}{% for message in messages %}
+      <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+        <div style="background-color: #feb2b2;" class="alert alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    {% endfor %}{% endif %}
+    
+    <form method="post" action='.'>
+      <h1 class="h3 mb-3 fw-normal text-center text-light">Invite</h1><br>
+      {% csrf_token %}
+  
+      <div class="form-floating">
+        <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Guest's Username">
+        <label for="floatingInput">Guest's Username</label>
+      </div>
+      <div class="form-floating">
+        <input type="email" name="email" class="form-control" id="id_password" placeholder="Guest's Email">
+        <label for="floatingPassword">Guest's Email</label>
+      </div><br><h6 class="text-light">Any of these field should be filled up</h6><br>
+      <button id="submit" class="w-100 btn btn-lg" style="background-color: #285e61;" type="submit">Invite</button>
+    </form>
+  </main>
+  <!--invite-->
+{% endblock %}

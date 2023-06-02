@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+{% block title %}{{ searched }}{% endblock %}
+{% load static %}
+{% block content %}
+  {% if searched != "" %}
+      <br><h1 class="text-center text-light display-1">You searched for "{{ searched }}"</h1><br>
+      {% if len %}
+          <div class="shadow-lg p-4 mb-5 rounded" style="margin-left:3rem;margin-right:2rem;">
+            <table class="table table-striped">
+              <tbody>
+                  {% for userr in users %}
+                    <tr>
+                        <td style="display: flex">
+                            {% if userr.profile.profile_pic %}
+                                <img style="margin-right: 5px;" height="40" width="40" src="{{ userr.profile.profile_pic.url }}" data-bs-toggle="dropdown" aria-expanded="false" class="img-fluid rounded-circle" alt="{{ userr.get_full_name }}">
+                            {% else %}
+                                <img style="margin-right: 5px;" height="40" width="40" src="{% static '/images/profile_pic.png' %}" data-bs-toggle="dropdown" aria-expanded="false" class="img-fluid rounded-circle" alt="Profile Pic">
+                            {% endif %}
+                            <h4><a href="{% url 'profile' userr.id %}" style="text-decoration: none;color: #f1f1f1">{% if userr.get_full_name %}{{ userr.get_full_name }}-<small style="font-size: 1rem;">{{ userr }}</small>{% else %}{{ userr }}{% endif %}</a></h4>
+                        </td>
+                        {% if userr.id != user.id %}
+                        <td align="right">
+                            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg style="color: black;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                              <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            </svg>
+                            </button>
+                            <ul class="dropdown-menu" style="background-color: rgb(17 94 89);">
+                                {% if userr in frnds %}
+                                    <li><a class="dropdown-item text-light" href="{% url 'unfriend' userr.id %}">Unfriend</a></li>
+                                {% else %}
+                                    {% if userr in sent_req %}
+                                        <li><a class="dropdown-item text-light" href="{% url 'cancel-friendreq' userr.id %}">Cancel Request</a></li>
+                                    {% elif userr in rec_req %}
+                                        <li><a class="dropdown-item text-light" href="{% url 'accept-friendreq' userr.id %}">Accept Request</a></li>
+                                        <li><a class="dropdown-item text-light" href="{% url 'decline-friendreq' userr.id %}">Decline Request</a></li>
+                                    {% else %}
+                                        <li><a class="dropdown-item text-light" href="{% url 'add-friend' userr.id %}">Add Friend</a></li>
+                                    {% endif %}
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                        </td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+        </div>
+      {% else %}
+        <br><br><br>
+        <center>
+          <strong><h1 class="text-light">Nothing found</h1></strong><br>
+        </center>
+      {% endif %}
+  {% else %}
+    <br><h1 class="text-center text-light display-1">You forgot to search anything!</h1><br>
+  {% endif %}
+{% endblock %}

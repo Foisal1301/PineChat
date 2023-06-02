@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{ page_user.user.username }} {{ page_user.user.last_name }} | PineChat{% endblock %}
+{% block content %}
+    <br><center>
+    <div class="card mb-3" style="max-width: 80%;background-color: rgb(17 94 89);">
+      <div>
+        <div class="col-md-4">
+          {% if page_user.profile_pic %}
+            <img src="{{ page_user.profile_pic.url }}" class="img-fluid rounded-circle" alt="{{ page_user.user.first_name}} {{page_user.user.last_name }}">
+          {% else %}
+            <img src="{% static '/images/profile_pic.png' %}" class="img-fluid rounded-circle" alt="{{ page_user.user.first_name}} {{page_user.user.last_name }}">
+          {% endif %}
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title text-light">{{ page_user.user.first_name }} {{ page_user.user.last_name }}<small>- {{ page_user.user }}</small></h5>
+            <p class="card-text text-light">{{ page_user.bio|safe }}</p>
+            {% if page_user.user.id == user.id %}
+            <div class="row" style="margin-bottom:0.5rem;"><a href="/edit_profile/" class="btn btn-primary">Edit your Profile</a></div>
+            <div class="row" style="margin-bottom:0.5rem;"><a href="/privacy_settings/" class="btn btn-secondary">Privcacy Settings</a></div>
+            <div class="row" style="margin-bottom:0.5rem;"><a href="/change_password/" class="btn btn-warning">Change Password</a></div>
+            <div class="row" style="margin-bottom:0.5rem;"><a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-user-modal">Delete your account</a></div>
+            {% elif page_user.user in frnds %}
+                <div class="row" style="margin-bottom:0.5rem;"><a class="btn btn-danger" href="{% url 'unfriend' page_user.user.id %}">Unfriend</a></div>
+            {% elif page_user.user not in frnds %}
+                {% if req_sent %}
+                <div class="row" style="margin-bottom:0.5rem;"><a href="{% url 'cancel-friendreq' page_user.user.id %}" class="btn btn-primary" >Cancel Request</a></div>
+                {% elif req_rec %}
+                    <div class="row" style="margin-bottom:0.5rem;"><a class="btn btn-primary" href="{% url 'accept-friendreq' page_user.user.id %}">Accept Request</a></div>
+                    <div class="row" style="margin-bottom:0.5rem;"><a class="btn btn-primary" href="{% url 'decline-friendreq' page_user.user.id %}">Decline Request</a></div>
+                {% else %}
+                    <div class="row" style="margin-bottom:0.5rem;"><a class="btn btn-primary" href="{% url 'add-friend' page_user.user.id %}">Add Friend</a></div>
+                {% endif %}
+            {% endif %}
+          </div>
+        </div>
+      </div></div></center><br>
+    
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% block title %}Friends{% endblock %}
+{% load static %}
+{% block content %}
+  
+  {% if friends %}
+      <br><h1 class="text-center text-light display-1">Friends</h1><br>
+      <div class="shadow-lg p-4 mb-5 rounded" style="margin-left:3rem;margin-right:2rem;">
+        <table class="table table-striped">
+          <tbody>{% for frnd in friends %}
+            <tr>
+                <td style="display: flex">
+                    {% if frnd.profile.profile_pic %}
+                        <img style="margin-right: 5px;" height="40" width="40" src="{{ frnd.profile.profile_pic.url }}" data-bs-toggle="dropdown" aria-expanded="false" class="img-fluid rounded-circle" alt="{{ frnd.user.first_name}} {{ frnd.user.last_name }}">
+                    {% else %}
+                        <img style="margin-right: 5px;" height="40" width="40" src="{% static '/images/profile_pic.png' %}" data-bs-toggle="dropdown" aria-expanded="false" class="img-fluid rounded-circle" alt="Profile Pic">
+                    {% endif %}
+                    <h4><a href="{% url 'friend' frnd.id %}" style="text-decoration: none;color: #f1f1f1">{% if frnd.get_full_name %}{{ frnd.get_full_name }}{% else %}{{ frnd }}{% endif %}</a></h4>
+                </td>
+                <td align="right">
+                    <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg style="color: black;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                      <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                    </svg>
+                    </button>
+                    <ul class="dropdown-menu" style="background-color: rgb(17 94 89);">
+                        <li><a class="dropdown-item text-light" href="{% url 'profile' frnd.id %}">Show Profile</a></li>
+                        {% if user.id != frnd.id %}
+                            <li><a class="dropdown-item text-light" href="{% url 'unfriend' frnd.id %}">Unfriend</a></li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>{% endfor %}
+          </tbody>
+        </table>
+    </div>
+  {% else %}
+    <br><br><br>
+    <center>
+      <strong><h1>You have no friends</h1></strong><br>
+    </center>
+  {% endif %}
+
+{% endblock %}

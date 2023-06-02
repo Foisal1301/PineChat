@@ -1,0 +1,29 @@
+<!-- Modal -->
+<div class="modal fade" id="view{{ message.id }}" tabindex="-1" aria-labelledby="view{{ message.id }}Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background-color: rgb(0, 137, 123);">
+        <div class="modal-header" style="background-color:rgb(17 94 89);">
+            <h1 class="modal-title fs-5 text-light" id="view{{ message.id }}Label">{% if message.is_file.filename|length < 35 %}
+                {{ message.is_file.filename }}
+              {% else %}
+                {{ message.is_file.filename|slice:'35' }}.....
+              {% endif %}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body"><center>
+            {% if message.is_file.ftype == 'image' %}
+                <img height='400' width="400" src='{{ message.file.url }}' class='img-fluid' />
+            {% elif message.is_file.ftype == 'video' %}
+                <video src='{{ message.file.url }}' controls />
+            {% elif message.is_file.ftype == 'audio' %}
+                <audio src='{{ message.file.url }}' controls />
+            {% elif message.is_file.ftype == 'unknown' %}
+                <a class='btn btn-info' download='{{ message.file.url }}' href='{{ message.file.url }}'>Download {{ message.is_file.filename }}</a>
+            {% endif %}</center>
+        </div>
+        <div class="modal-footer" style="background-color:rgb(17 94 89);">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
