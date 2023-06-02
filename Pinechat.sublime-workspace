@@ -23,42 +23,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "<label id=\"id_upload_button\" class=\"btn btn-file btn-warning\" for=\"id_upload_filename\" type=\"submit\">\n    <input type=\"file\" name=\"file\" id=\"id_upload_filename\" style=\"display: none;\" onchange=\"$('#id_upload_form').submit()\">\n    <i class=\"glyphicon glyphicon-upload\"></i>\n    Upload a file\n</label>",
-			"settings":
-			{
-				"buffer_size": 299,
-				"line_ending": "Unix",
-				"name": "<label id=\"id_upload_button\" class=\"btn btn-file b"
-			},
-			"undo_stack":
-			[
-				[
-					1,
-					1,
-					"paste",
-					null,
-					"AQAAAAAAAAAAAAAAuwEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					6,
-					8,
-					"unindent",
-					null,
-					"IAAAAGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIAIBAAAAAAAAAgEAAAAAAAAEAAAAICAgIFEBAAAAAAAAUQEAAAAAAAAEAAAAICAgIIMBAAAAAAAAgwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIP4AAAAAAAAA/gAAAAAAAAAEAAAAICAgIEkBAAAAAAAASQEAAAAAAAAEAAAAICAgIHcBAAAAAAAAdwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIPoAAAAAAAAA+gAAAAAAAAAEAAAAICAgIEEBAAAAAAAAQQEAAAAAAAAEAAAAICAgIGsBAAAAAAAAawEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIPYAAAAAAAAA9gAAAAAAAAAEAAAAICAgIDkBAAAAAAAAOQEAAAAAAAAEAAAAICAgIF8BAAAAAAAAXwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIPIAAAAAAAAA8gAAAAAAAAAEAAAAICAgIDEBAAAAAAAAMQEAAAAAAAAEAAAAICAgIFMBAAAAAAAAUwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIO4AAAAAAAAA7gAAAAAAAAAEAAAAICAgICkBAAAAAAAAKQEAAAAAAAAEAAAAICAgIEcBAAAAAAAARwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIOoAAAAAAAAA6gAAAAAAAAAEAAAAICAgICEBAAAAAAAAIQEAAAAAAAAEAAAAICAgIDsBAAAAAAAAOwEAAAAAAAAEAAAAICAgIGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIOYAAAAAAAAA5gAAAAAAAAAEAAAAICAgIBkBAAAAAAAAGQEAAAAAAAAEAAAAICAgIC8BAAAAAAAALwEAAAAAAAAEAAAAICAgIA",
-					"AQAAAAAAAAABAAAAuwEAAAAAAABmAAAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					7,
-					1,
-					"unindent",
-					null,
-					"BAAAAGYAAAAAAAAAZgAAAAAAAAAEAAAAICAgIOIAAAAAAAAA4gAAAAAAAAAEAAAAICAgIBEBAAAAAAAAEQEAAAAAAAAEAAAAICAgICMBAAAAAAAAIwEAAAAAAAAEAAAAICAgIA",
-					"AQAAAAAAAAABAAAAOwEAAAAAAABmAAAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -99,10 +63,11 @@
 	],
 	"file_history":
 	[
+		"/Users/foisal/Documents/PineChat/friend/templates/friend/friend_chat.html",
+		"/Users/foisal/Documents/PineChat/friend/templates/friend/friends.html",
 		"/Users/foisal/Documents/PineChat/core/templates/core/404.html",
 		"/Users/foisal/Documents/PineChat/core/templates/core/500.html",
 		"/Users/foisal/Documents/PineChat/friend/views.py",
-		"/Users/foisal/Documents/PineChat/friend/templates/friend/friend_chat.html",
 		"/Users/foisal/Documents/PineChat/django_project/settings.py",
 		"/Users/foisal/Documents/PineChat/core/views.py",
 		"/Users/foisal/Documents/PineChat/django_project/urls.py",
@@ -118,7 +83,7 @@
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 31.0
 	},
 	"find_in_files":
 	{
@@ -157,38 +122,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 299,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								299,
-								299
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<label id=\"id_upload_button\" class=\"btn btn-file b",
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				}
 			]
 		}
 	],
